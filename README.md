@@ -14,9 +14,10 @@ Here are the routes of the application:
 | -------------------------- | ---- | --------------------- | ----------------------------- |
 | `/api/pokemon/[pokemonId]` | GET  | `ApiPokemonPokemonId` | `getApiPokemonPokemonId(...)` |
 | `/api/pokemon`             | GET  | `ApiPokemon`          | `getApiPokemon(...)`          |
-| `/`                        | -    | `Home`                | `<Home.Link>`                 |
-| `/pokemon/[pokemonId]`     | -    | `PokemonPokemonId`    | `<PokemonPokemonId.Link>`     |
-| `/search`                  | -    | `Search`              | `<Search.Link>`               |
+| `/`                        | -    | `Home`                | `<R.Home.Link>`               |
+| `/pokemon/[pokemonId]`     | -    | `PokemonPokemonId`    | `<R.PokemonPokemonId.Link>`   |
+| `/search`                  | -    | `Search`              | `<R.Search.Link>`             |
+| `/test`                    | -    | `Test`                | `<R.Test.Link>`               |
 
 To use the routes, you can import them from `@/routes` and use them in your code.
 

@@ -5,6 +5,7 @@ import { H1 } from "@/components/ui/headings";
 import TanstackProvider from "@/providers/tanstack-provider";
 import { R } from "@/routes";
 import Search from "./search/SearchList";
+import { Flex2, FlexBetween } from "@/components/ui/containers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,17 +33,37 @@ export default function RootLayout({
 //
 //
 function Navbar() {
+  const routeLinks = {
+    Home: R.Home,
+    Test: R.Test,
+    Tanstack: R.Tanstack,
+  };
+
   return (
     <header className="flex mb-5 gap-2 text-2xl py-3 px-6 bg-blue-900 text-white rounded-b-xl shadow-gray-700 drop-shadow-2xl">
-      {/* search/page.info.ts --> search in z object */}
-      <R.Home.Link>Home</R.Home.Link>
-      <R.Test.Link>Test</R.Test.Link>
+      <FlexBetween className="w-full">
+        <Flex2>
+          <R.Home.Link>Home</R.Home.Link>
+          <R.Test.Link>Test</R.Test.Link>
+          <R.Tanstack.Link>Tanstack</R.Tanstack.Link>
 
-      <R.Tanstack.Link>Tanstack</R.Tanstack.Link>
-      {/* <Link href="/search" className="font-light"></Link> */}
-      <R.Search.Link search={{ q: "bulb" }} className="font-light">
-        Search
-      </R.Search.Link>
+          {/* Z object in /search/page.info.ts */}
+          <R.Search.Link search={{ q: "bulb" }}>Search</R.Search.Link>
+        </Flex2>
+
+        {/* with mapping, did'nt find a better way */}
+        <Flex2>
+          {Object.entries(routeLinks).map(([key, value]) => (
+            <RLink key={key} route={value}>
+              {key}
+            </RLink>
+          ))}
+        </Flex2>
+      </FlexBetween>
     </header>
   );
+}
+
+function RLink({ route, children }: { route: any; children: React.ReactNode }) {
+  return <route.Link>{children}</route.Link>;
 }
